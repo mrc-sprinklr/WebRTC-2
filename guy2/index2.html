@@ -123,7 +123,7 @@
             offerBox.setAttribute('readonly', 'true');
 
             // accepting the offer
-            localConnection.setRemoteDescription(description).then(() => { console.log("Sender: offer accepted") });
+            localConnection.setRemoteDescription(description).then(() => { console.log("Receiver: offer accepted") });
 
             // adding proposed icecandidates
             icecandidates.forEach(candidate => {
