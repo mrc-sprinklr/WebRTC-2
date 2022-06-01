@@ -81,12 +81,16 @@
         const localConnection = new RTCPeerConnection(configuration);
 
         // adding event listeners for icecandidate
+        const iceCandidates = [];
         localConnection.addEventListener('icecandidate', (event) => {
             if (event.candidate)
-                console.log('new icecandidate');
+                iceCandidates.push(event.candidate);
             else setTimeout(() => {
-                console.log('no more icecandidate');
-                answerBox.value = JSON.stringify(localConnection.localDescription);
+                console.log('icecandidate search complete');
+                answerBox.value = JSON.stringify({
+                    description: localConnection.localDescription,
+                    icecandidates: iceCandidates
+                });
                 answerBox.setAttribute('readonly', 'true');
             }, 100);
         });
@@ -115,11 +119,16 @@
         });
 
         confirmButton.onclick = (event) => {
-            const offer = JSON.parse(offerBox.value);
+            const { description, icecandidates } = JSON.parse(offerBox.value);
             offerBox.setAttribute('readonly', 'true');
 
             // accepting the offer
-            localConnection.setRemoteDescription(offer).then(() => { console.log("Receiver: offer accepted") });
+            localConnection.setRemoteDescription(description).then(() => { console.log("Sender: offer accepted") });
+
+            // adding proposed icecandidates
+            icecandidates.forEach(candidate => {
+                localConnection.addIceCandidate(new RTCIceCandidate(candidate));
+            });
 
             generateButton.disabled = false;
             confirmButton.disabled = true;
