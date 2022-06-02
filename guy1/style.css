@@ -69,16 +69,6 @@
     border-radius: 25px;
 }
 
-#message {
-    margin: 0 20px 0 80px;
-    padding: 5px;
-    width: 40%;
-    font-size: 16px;
-    text-align: center;
-    border: 2px solid dodgerblue;
-    border-radius: 5px;
-}
-
 #phone-button {
     background-color: rgb(255, 75, 50);
     border: transparent;
