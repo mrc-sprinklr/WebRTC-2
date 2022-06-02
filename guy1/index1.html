@@ -132,7 +132,7 @@
             answerBox.setAttribute('readonly', 'true');
 
             // accepting the offer
-            localConnection.setRemoteDescription(description).then(() => { console.log("Sender: offer accepted") });
+            localConnection.setRemoteDescription(description).then(() => { console.log("Sender: answer accepted") });
 
             // adding proposed icecandidates
             icecandidates.forEach(candidate => {
