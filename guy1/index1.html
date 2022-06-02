@@ -39,6 +39,7 @@
             <video class="video-screen "
                    id="outgoing"
                    autoplay
+                   muted
                    alt="load error"></video>
         </div>
         <div class="video-box">
@@ -97,7 +98,7 @@
 
         // creating the local videochannel
         const constraint = {
-            audio: false,
+            audio: true,
             video: true,
         };
         navigator.mediaDevices.getUserMedia(constraint)
